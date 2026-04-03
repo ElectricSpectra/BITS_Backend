@@ -1,0 +1,8 @@
+port_code,country,region,customs_risk_score,avg_dwell_hours
+SGSIN,SG,APAC,20,18
+NLRTM,NL,EU,24,22
+USNYC,US,NA,36,24
+AEDXB,AE,MEA,30,20
+USLAX,US,NA,42,26
+INNSA,IN,APAC,26,19
+INBOM,IN,APAC,28,21

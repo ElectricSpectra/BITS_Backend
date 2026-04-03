@@ -1,0 +1,5 @@
+region,allow_transshipment,blocked_ports,contract_mandatory_carriers
+APAC,TRUE,,CAR-01|CAR-02
+EU,TRUE,,
+NA,TRUE,,
+MEA,TRUE,,CAR-04

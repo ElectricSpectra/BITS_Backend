@@ -1,0 +1,74 @@
+You should not try to “connect everything in DP World” in a hackathon, because DP World is too broad and many systems vary by region, terminal, and business unit. Instead, define a practical integration scope: connect the few systems that directly influence operational decisions, then build an orchestration layer that turns those signals into recommended actions for a specific user group.
+
+Systems to map
+At a high level, these are the main system categories DP World appears to run or integrate with across its logistics stack:
+
+System	What it does
+Terminal Operating System (TOS / CARGOES TOS+)	Manages vessel operations, berth planning, yard planning, crane jobs, gate moves, and container handling inside terminals.
+Customs / Border system (CARGOES Customs)	Supports paperless customs, compliance workflows, risk assessment, valuation, and border management.
+Logistics booking & visibility platform (CARGOES Logistics)	Handles multimodal booking, customer quotes, shipment tracking, real-time cargo visibility, and predictability.
+Warehouse Management System (WMS)	Manages storage, inventory, barcode/RFID movement, warehouse operations, and track-and-trace inside FTWZs and inland facilities.
+Transport Management System (TMS)	Tracks vehicles, transport execution, route optimization, GPS visibility, and in some cases automates LR-to-invoice flows.
+Finance / ERP integrations	Supports billing, invoicing, enterprise workflows, and integration with broader logistics and customs processes.
+Tracking / IoT layer	Collects cargo, vehicle, and asset signals through GPS, IoT sensors, API feeds, and event data.
+Trade finance / invoice-fraud linkages	Connects with trade-finance fraud/compliance ecosystems such as UAE Trade Connect for suspicious invoice checks.
+This is enough for your solution architecture; you do not need to enumerate every internal product instance or every regional tool to define the hackathon concept.
+
+What to connect
+For your product, connect only the systems that drive management decisions:
+
+TOS, for terminal congestion, berth status, yard pressure, gate queues, and container events.
+
+TMS, for truck availability, movement status, estimated pickup/delivery, and route alternatives.
+
+WMS, for inventory readiness, warehouse bottlenecks, and dispatch preparedness.
+
+Customs/compliance, for document readiness, shipment holds, and clearance risk.
+
+Logistics booking/tracking, for shipment commitments, promised milestones, and customer-facing ETAs.
+
+ERP/finance, for cost impact, demurrage exposure, priority customer value, and SLA-linked commercial decisions.
+
+That gives you a real control-tower decision fabric instead of a generic dashboard.
+
+How to connect
+The realistic way is not deep replacement integration, but an orchestration middleware layer using APIs, event feeds, and adapters. Your architecture should look like this:
+
+Ingestion layer: Pull data from APIs, flat-file uploads, EDI messages, and periodic exports from TOS, TMS, WMS, customs, and ERP systems.
+
+Normalization layer: Convert different formats into one common shipment/container/order/event model.
+
+Decision engine: Run AI/ML rules for route recommendations, provider selection, exception prioritization, congestion prediction, and SLA-risk scoring.
+
+Action layer: Push recommendations to managers through one console with alerts, ranked actions, simulations, and human approval workflows.
+
+So your hackathon demo should say: “We integrate through APIs and event connectors where available, and through batch/EDI adapters where systems are older.”
+
+End users
+Your primary end user should be regional operations managers or control tower managers, not frontline labor and not top executives. They are the people who actually need to decide whether to reroute cargo, reassign trucking, escalate customs issues, prioritize containers, or shift resources across facilities.
+
+Secondary users can be:
+
+Terminal planners, for yard and berth conflict resolution.
+
+Transport planners, for carrier/provider assignment and route changes.
+
+Customs/compliance teams, for pre-clearance risk and exception handling.
+
+Account or service managers, for SLA-risk communication to customers.
+
+Decision support
+Your system should not just show visibility; it should help users make five kinds of decisions:
+
+Decision type	Example help
+Route decision	Recommend alternate route or mode when congestion or delay risk crosses threshold.
+Provider decision	Suggest which trucking or logistics partner to assign based on capacity, SLA history, and cost.
+Priority decision	Rank which containers or shipments need intervention first based on customer impact, dwell risk, or demurrage risk.
+Resource decision	Advise when to shift yard, gate, warehouse, or transport resources to avoid bottlenecks.
+Exception decision	Tell teams what action to take when customs, documents, or operations create a disruption.
+The strongest product story is: “We help DP World managers move from fragmented monitoring to explainable action.”
+
+Best scope
+For the hackathon, I would scope it to one operating loop: container exception orchestration across terminal, transport, and customs systems. That is narrow enough to build, broad enough to feel strategic, and close enough to DP World’s real pain of fragmentation, delay risk, and cross-functional coordination.
+
+A good one-line pitch is: “An AI orchestration layer that connects DP World’s TOS, TMS, WMS, customs, and logistics systems to recommend the next best action for every shipment at risk.”
